@@ -94,6 +94,13 @@ function registerValidSW(swUrl: string, config?: Config) {
             }
           }
         };
+
+        console.log(
+					'SW on update found 1 >> ',
+					installingWorker,
+					navigator.serviceWorker.controller,
+					registration
+				);
       };
     })
     .catch((error) => {
