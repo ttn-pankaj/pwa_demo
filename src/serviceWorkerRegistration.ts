@@ -82,10 +82,6 @@ function registerValidSW(swUrl: string, config?: Config) {
                 console.log("updatee commingggggggggg...")
                 config.onUpdate(registration);
               }
-              if (registration.waiting) {
-                console.log('Forcing update by skipping waiting');
-                registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-              }
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
@@ -107,6 +103,7 @@ function registerValidSW(swUrl: string, config?: Config) {
 					navigator.serviceWorker.controller,
 					registration
 				);
+        window.location.reload();
       };
     })
     .catch((error) => {
