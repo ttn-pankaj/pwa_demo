@@ -74,6 +74,7 @@ function registerValidSW(swUrl: string, config?: Config) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
+              registration?.waiting?.postMessage({type: 'SKIP_WAITING'})
               console.log(
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://cra.link/PWA.'
@@ -105,7 +106,7 @@ function registerValidSW(swUrl: string, config?: Config) {
 					navigator.serviceWorker.controller,
 					registration
 				);
-        registration?.waiting?.postMessage({type: 'SKIP_WAITING'})
+        
       };
     })
     .catch((error) => {
