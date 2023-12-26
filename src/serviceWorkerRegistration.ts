@@ -75,6 +75,7 @@ function registerValidSW(swUrl: string, config?: Config) {
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
               registration?.waiting?.postMessage({type: 'SKIP_WAITING'})
+              window.location.reload();
               console.log(
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://cra.link/PWA.'
@@ -82,7 +83,6 @@ function registerValidSW(swUrl: string, config?: Config) {
 
               // Execute callback
               if (config && config.onUpdate) {
-                console.log("updatee commingggggggggg...")
                 config.onUpdate(registration);
               }
             } else {
