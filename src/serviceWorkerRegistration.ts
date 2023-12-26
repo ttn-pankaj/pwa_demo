@@ -96,6 +96,11 @@ function registerValidSW(swUrl: string, config?: Config) {
           }
         };
 
+        if (config && config.onUpdate) {
+          console.log("updatee commingggggggggg2...")
+          config.onUpdate(registration);
+        }
+
         console.log(
 					'SW on update found 1 >> ',
 					installingWorker,
