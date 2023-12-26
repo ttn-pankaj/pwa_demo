@@ -82,6 +82,10 @@ function registerValidSW(swUrl: string, config?: Config) {
                 console.log("updatee commingggggggggg...")
                 config.onUpdate(registration);
               }
+              if (registration.waiting) {
+                console.log('Forcing update by skipping waiting');
+                registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+              }
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
@@ -96,10 +100,6 @@ function registerValidSW(swUrl: string, config?: Config) {
           }
         };
 
-        if (config && config.onUpdate) {
-          console.log("updatee commingggggggggg2...")
-          config.onUpdate(registration);
-        }
 
         console.log(
 					'SW on update found 1 >> ',
