@@ -79,6 +79,7 @@ function registerValidSW(swUrl: string, config?: Config) {
 
               // Execute callback
               if (config && config.onUpdate) {
+                console.log("updatee commingggggggggg...")
                 config.onUpdate(registration);
               }
             } else {
@@ -107,6 +108,14 @@ function registerValidSW(swUrl: string, config?: Config) {
       console.error('Error during service worker registration:', error);
     });
 }
+
+// Listen for messages from the service worker
+navigator.serviceWorker.addEventListener('message', (event) => {
+  if (event.data.type === 'SKIP_WAITING') {
+    // Reload the page to activate the new service worker
+    window.location.reload();
+  }
+});
 
 function checkValidServiceWorker(swUrl: string, config?: Config) {
   // Check if the service worker can be found. If it can't reload the page.
